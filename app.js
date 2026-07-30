@@ -43,6 +43,17 @@ app.get("/saludo/:nombre",(req, res) => {
     res.send(`Hola ${nombre}, bienvenido`)
   });
 
+app.get("/producto/:nombre",(req, res) => {
+    const {nombre} = req.params;
+    res.json({
+      id: 1,
+      Nombre: nombre,
+      stok: 20,
+      precio: 10000,
+      categoria: "tegnologia"
+    });
+});
+
 app.listen(port, () => {
   console.log(`Servidor en funcionamiento en el puerto: ${port}`);
 });
