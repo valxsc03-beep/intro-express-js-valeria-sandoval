@@ -9,8 +9,17 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
+  "type": "commonjs",
   "dependencies": {
+    "dotenv": "^17.4.2",
     "express": "^5.2.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valxsc03-beep/intro-express-js-valeria-sandoval.git"
+  },
+  "bugs": {
+    "url": "https://github.com/valxsc03-beep/intro-express-js-valeria-sandoval/issues"
+  },
+  "homepage": "https://github.com/valxsc03-beep/intro-express-js-valeria-sandoval#readme"
 }
