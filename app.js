@@ -2,10 +2,11 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
+app.use(express.json());
+
 app.get("/", function(req, res) {
   res.send("API de aprendices, Enpoint principal");
 });
-
 
 const aprendices = [
   {
@@ -44,10 +45,39 @@ app.get("/aprendices/nombre/:nombre", (req, res) => {
   }
 });
 
+app.post("/aprendices", (req, res) => {
+  const { nombre, edad, correo } = req.body;
 
+  if (!nombre || nombre.length < 3) {
+    return res.status(400).json({
+      error: "El nombre debe tener al menos 3 letras"
+    });
+  }
 
+  if (!correo || !correo.includes("@")) {
+    return res.status(400).json({
+      error: "Debe ingresar un correo válido"
+    });
+  }
 
+  const nuevoId =
+    aprendices.length > 0 ? aprendices[aprendices.length - 1].id + 1 : 1;
 
-app.listen(port, function() {
-  console.log(`SERVIDOR:http://localhost: ${port}`);
+  const nuevoAprendiz = {
+    id: nuevoId,
+    nombre: nombre,
+    edad: parseInt(edad) || 0,
+    correo: correo,
+  };
+
+  aprendices.push(nuevoAprendiz);
+
+  res.status(201).json({
+    mensaje: "Aprendiz creado exitosamente",
+    Datos: nuevoAprendiz,
+  });
+});
+
+app.listen(port, function () {
+  console.log(`SERVIDOR: http://localhost:${port}`);
 });
